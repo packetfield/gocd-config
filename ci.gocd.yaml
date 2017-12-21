@@ -20,7 +20,7 @@ pipelines:
             deps:
               tasks:
                - exec:
-                   working_directory: develop-drone
+                   # working_directory: develop-drone
                    command: /bin/bash
                    arguments:
                     - bin/gocd-helper
