@@ -7,11 +7,11 @@ pipelines:
   shared-dns:
     group: ops-shared
     label_template: "${mygit[:8]}"
-    lock_behavior: none
+    lock_behavior: unlockWhenFinished
     materials:
       mygit:
         git: https://github.com/packetfield/infra-core.git
-        branch: shared
+        branch: master
 
     timer:
       spec: "0 0 11 ? * MON-FRI"  #mon-fri 11AM (office hours)
@@ -56,11 +56,11 @@ pipelines:
   shared-drone:
     group: ops-shared
     label_template: "${mygit[:8]}"
-    lock_behavior: none
+    lock_behavior: unlockWhenFinished
     materials:
       mygit:
         git: https://github.com/packetfield/infra-core.git
-        branch: shared
+        branch: master
 
     timer:
       spec: "0 0 11 ? * MON-FRI"  #mon-fri 11AM (office hours)
@@ -105,11 +105,11 @@ pipelines:
   shared-gocd:
     group: ops-shared
     label_template: "${mygit[:8]}"
-    lock_behavior: none
+    lock_behavior: unlockWhenFinished
     materials:
       mygit:
         git: https://github.com/packetfield/infra-core.git
-        branch: shared
+        branch: master
 
     timer:
       spec: "0 0 11 ? * MON-FRI"  #mon-fri 11AM (office hours)
@@ -154,7 +154,7 @@ pipelines:
   develop-prometheus:
     group: ops-develop
     label_template: "${mygit[:8]}"
-    lock_behavior: none
+    lock_behavior: unlockWhenFinished
     materials:
       mygit:
         git: https://github.com/packetfield/infra-core.git
@@ -203,7 +203,7 @@ pipelines:
   develop-dns:
     group: ops-develop
     label_template: "${mygit[:8]}"
-    lock_behavior: none
+    lock_behavior: unlockWhenFinished
     materials:
       mygit:
         git: https://github.com/packetfield/infra-core.git
@@ -252,7 +252,7 @@ pipelines:
   master-prometheus:
     group: ops-master
     label_template: "${mygit[:8]}"
-    lock_behavior: none
+    lock_behavior: unlockWhenFinished
     materials:
       mygit:
         git: https://github.com/packetfield/infra-core.git
@@ -301,7 +301,7 @@ pipelines:
   master-dns:
     group: ops-master
     label_template: "${mygit[:8]}"
-    lock_behavior: none
+    lock_behavior: unlockWhenFinished
     materials:
       mygit:
         git: https://github.com/packetfield/infra-core.git
