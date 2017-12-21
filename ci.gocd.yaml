@@ -20,9 +20,33 @@ pipelines:
             deps:
               tasks:
                - exec:
-                   # working_directory: develop-drone
                    command: /bin/bash
                    arguments:
                     - bin/gocd-helper
                     - deps
-
+      - apply:
+          clean_workspace: false
+          jobs:
+            apply:
+              tasks:
+               - exec:
+                   command: /bin/bash
+                   arguments:
+                    - bin/gocd-helper
+                    - make
+                    - ENV=develop
+                    - COMPONENT=drone
+                    - plan
+      - config:
+          clean_workspace: false
+          jobs:
+            config:
+              tasks:
+               - exec:
+                   command: /bin/bash
+                   arguments:
+                    - bin/gocd-helper
+                    - make
+                    - ENV=develop
+                    - COMPONENT=drone
+                    - config
