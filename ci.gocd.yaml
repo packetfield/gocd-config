@@ -1,0 +1,28 @@
+---
+#ci.gocd.yaml
+# See: https://github.com/tomzo/gocd-yaml-config-plugin
+format_version: 2
+pipelines:
+
+  develop-drone:
+    group: ops-develop
+    label_template: "${mygit[:8]}"
+    lock_behavior: none
+    materials:
+      mygit:
+        git: https://github.com/packetfield/infra-core.git
+        branch: develop
+
+    stages:
+      - deps:
+          clean_workspace: false
+          jobs:
+            deps:
+              tasks:
+               - exec:
+                   working_directory: develop-drone
+                   command: /bin/bash
+                   arguments:
+                    - bin/gocd-helper
+                    - deps
+
