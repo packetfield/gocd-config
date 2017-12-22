@@ -4,14 +4,14 @@
 format_version: 2
 pipelines:
 
-  master-dns:
+  shared-dns:
     group: ops-shared
     label_template: "${mygit[:8]}"
     lock_behavior: unlockWhenFinished
     materials:
       mygit:
         git: https://github.com/packetfield/infra-core.git
-        branch: master
+        branch: developer
 
     timer:
       spec: "0 0 11 ? * MON-FRI"  #mon-fri 11AM (office hours)
@@ -44,14 +44,14 @@ pipelines:
 
 
 
-  master-drone:
+  shared-drone:
     group: ops-shared
     label_template: "${mygit[:8]}"
     lock_behavior: unlockWhenFinished
     materials:
       mygit:
         git: https://github.com/packetfield/infra-core.git
-        branch: master
+        branch: developer
 
     timer:
       spec: "0 0 11 ? * MON-FRI"  #mon-fri 11AM (office hours)
@@ -98,14 +98,14 @@ pipelines:
 
 
 
-  master-gocd:
+  shared-gocd:
     group: ops-shared
     label_template: "${mygit[:8]}"
     lock_behavior: unlockWhenFinished
     materials:
       mygit:
         git: https://github.com/packetfield/infra-core.git
-        branch: master
+        branch: developer
 
     timer:
       spec: "0 0 11 ? * MON-FRI"  #mon-fri 11AM (office hours)
