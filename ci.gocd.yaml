@@ -11,7 +11,7 @@ pipelines:
     materials:
       mygit:
         git: https://github.com/packetfield/infra-core.git
-        branch: developer
+        branch: develop
 
     timer:
       spec: "0 0 11 ? * MON-FRI"  #mon-fri 11AM (office hours)
@@ -51,7 +51,7 @@ pipelines:
     materials:
       mygit:
         git: https://github.com/packetfield/infra-core.git
-        branch: developer
+        branch: develop
 
     timer:
       spec: "0 0 11 ? * MON-FRI"  #mon-fri 11AM (office hours)
@@ -105,7 +105,7 @@ pipelines:
     materials:
       mygit:
         git: https://github.com/packetfield/infra-core.git
-        branch: developer
+        branch: develop
 
     timer:
       spec: "0 0 11 ? * MON-FRI"  #mon-fri 11AM (office hours)
