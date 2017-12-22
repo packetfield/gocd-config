@@ -4,6 +4,126 @@
 format_version: 2
 pipelines:
 
+  develop-dns:
+    group: ops-develop
+    label_template: "${mygit[:8]}"
+    lock_behavior: unlockWhenFinished
+    materials:
+      mygit:
+        git: https://github.com/packetfield/infra-core.git
+        branch: develop
+
+    timer:
+      spec: "0 0 11 ? * MON-FRI"  #mon-fri 11AM (office hours)
+    stages:
+      - deps:
+          clean_workspace: false
+          jobs:
+            deps:
+              tasks:
+               - exec:
+                   command: /bin/bash
+                   arguments:
+                    - bin/gocd-helper
+                    - deps
+      - apply:
+          clean_workspace: false
+          jobs:
+            apply:
+              tasks:
+               - exec:
+                   command: /bin/bash
+                   arguments:
+                    - bin/gocd-helper
+                    - make
+                    - ENV=develop
+                    - COMPONENT=dns
+                    - plan
+
+
+
+
+
+  master-dns:
+    group: ops-master
+    label_template: "${mygit[:8]}"
+    lock_behavior: unlockWhenFinished
+    materials:
+      mygit:
+        git: https://github.com/packetfield/infra-core.git
+        branch: master
+
+    timer:
+      spec: "0 0 11 ? * MON-FRI"  #mon-fri 11AM (office hours)
+    stages:
+      - deps:
+          clean_workspace: false
+          jobs:
+            deps:
+              tasks:
+               - exec:
+                   command: /bin/bash
+                   arguments:
+                    - bin/gocd-helper
+                    - deps
+      - apply:
+          clean_workspace: false
+          jobs:
+            apply:
+              tasks:
+               - exec:
+                   command: /bin/bash
+                   arguments:
+                    - bin/gocd-helper
+                    - make
+                    - ENV=master
+                    - COMPONENT=dns
+                    - plan
+
+
+
+
+
+  shared-dns:
+    group: ops-shared
+    label_template: "${mygit[:8]}"
+    lock_behavior: unlockWhenFinished
+    materials:
+      mygit:
+        git: https://github.com/packetfield/infra-core.git
+        branch: develop
+
+    timer:
+      spec: "0 0 11 ? * MON-FRI"  #mon-fri 11AM (office hours)
+    stages:
+      - deps:
+          clean_workspace: false
+          jobs:
+            deps:
+              tasks:
+               - exec:
+                   command: /bin/bash
+                   arguments:
+                    - bin/gocd-helper
+                    - deps
+      - apply:
+          clean_workspace: false
+          jobs:
+            apply:
+              tasks:
+               - exec:
+                   command: /bin/bash
+                   arguments:
+                    - bin/gocd-helper
+                    - make
+                    - ENV=shared
+                    - COMPONENT=dns
+                    - plan
+
+
+
+
+
   shared-drone:
     group: ops-shared
     label_template: "${mygit[:8]}"
@@ -54,46 +174,6 @@ pipelines:
                     - ENV=shared
                     - COMPONENT=drone
                     - config
-
-
-
-
-  shared-dns:
-    group: ops-shared
-    label_template: "${mygit[:8]}"
-    lock_behavior: unlockWhenFinished
-    materials:
-      mygit:
-        git: https://github.com/packetfield/infra-core.git
-        branch: develop
-
-    timer:
-      spec: "0 0 11 ? * MON-FRI"  #mon-fri 11AM (office hours)
-    stages:
-      - deps:
-          clean_workspace: false
-          jobs:
-            deps:
-              tasks:
-               - exec:
-                   command: /bin/bash
-                   arguments:
-                    - bin/gocd-helper
-                    - deps
-      - apply:
-          clean_workspace: false
-          jobs:
-            apply:
-              tasks:
-               - exec:
-                   command: /bin/bash
-                   arguments:
-                    - bin/gocd-helper
-                    - make
-                    - ENV=shared
-                    - COMPONENT=dns
-                    - plan
-
 
 
 
@@ -152,46 +232,6 @@ pipelines:
 
 
 
-  develop-dns:
-    group: ops-develop
-    label_template: "${mygit[:8]}"
-    lock_behavior: unlockWhenFinished
-    materials:
-      mygit:
-        git: https://github.com/packetfield/infra-core.git
-        branch: develop
-
-    timer:
-      spec: "0 0 11 ? * MON-FRI"  #mon-fri 11AM (office hours)
-    stages:
-      - deps:
-          clean_workspace: false
-          jobs:
-            deps:
-              tasks:
-               - exec:
-                   command: /bin/bash
-                   arguments:
-                    - bin/gocd-helper
-                    - deps
-      - apply:
-          clean_workspace: false
-          jobs:
-            apply:
-              tasks:
-               - exec:
-                   command: /bin/bash
-                   arguments:
-                    - bin/gocd-helper
-                    - make
-                    - ENV=develop
-                    - COMPONENT=dns
-                    - plan
-
-
-
-
-
   develop-prometheus:
     group: ops-develop
     label_template: "${mygit[:8]}"
@@ -226,46 +266,6 @@ pipelines:
                     - make
                     - ENV=develop
                     - COMPONENT=prometheus
-                    - plan
-
-
-
-
-
-  master-dns:
-    group: ops-master
-    label_template: "${mygit[:8]}"
-    lock_behavior: unlockWhenFinished
-    materials:
-      mygit:
-        git: https://github.com/packetfield/infra-core.git
-        branch: master
-
-    timer:
-      spec: "0 0 11 ? * MON-FRI"  #mon-fri 11AM (office hours)
-    stages:
-      - deps:
-          clean_workspace: false
-          jobs:
-            deps:
-              tasks:
-               - exec:
-                   command: /bin/bash
-                   arguments:
-                    - bin/gocd-helper
-                    - deps
-      - apply:
-          clean_workspace: false
-          jobs:
-            apply:
-              tasks:
-               - exec:
-                   command: /bin/bash
-                   arguments:
-                    - bin/gocd-helper
-                    - make
-                    - ENV=master
-                    - COMPONENT=dns
                     - plan
 
 
