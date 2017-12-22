@@ -4,7 +4,7 @@
 format_version: 2
 pipelines:
 
-  shared-dns:
+  master-dns:
     group: ops-shared
     label_template: "${mygit[:8]}"
     lock_behavior: unlockWhenFinished
@@ -39,21 +39,12 @@ pipelines:
                     - ENV=shared
                     - COMPONENT=dns
                     - plan
-      - config:
-          clean_workspace: false
-          jobs:
-            config:
-              tasks:
-               - exec:
-                   command: /bin/bash
-                   arguments:
-                    - bin/gocd-helper
-                    - make
-                    - ENV=shared
-                    - COMPONENT=dns
-                    - config
 
-  shared-drone:
+
+
+
+
+  master-drone:
     group: ops-shared
     label_template: "${mygit[:8]}"
     lock_behavior: unlockWhenFinished
@@ -88,6 +79,8 @@ pipelines:
                     - ENV=shared
                     - COMPONENT=drone
                     - plan
+
+
       - config:
           clean_workspace: false
           jobs:
@@ -102,7 +95,10 @@ pipelines:
                     - COMPONENT=drone
                     - config
 
-  shared-gocd:
+
+
+
+  master-gocd:
     group: ops-shared
     label_template: "${mygit[:8]}"
     lock_behavior: unlockWhenFinished
@@ -137,6 +133,8 @@ pipelines:
                     - ENV=shared
                     - COMPONENT=gocd
                     - plan
+
+
       - config:
           clean_workspace: false
           jobs:
@@ -150,6 +148,9 @@ pipelines:
                     - ENV=shared
                     - COMPONENT=gocd
                     - config
+
+
+
 
   develop-prometheus:
     group: ops-develop
@@ -186,19 +187,10 @@ pipelines:
                     - ENV=develop
                     - COMPONENT=prometheus
                     - plan
-      - config:
-          clean_workspace: false
-          jobs:
-            config:
-              tasks:
-               - exec:
-                   command: /bin/bash
-                   arguments:
-                    - bin/gocd-helper
-                    - make
-                    - ENV=develop
-                    - COMPONENT=prometheus
-                    - config
+
+
+
+
 
   develop-dns:
     group: ops-develop
@@ -235,19 +227,10 @@ pipelines:
                     - ENV=develop
                     - COMPONENT=dns
                     - plan
-      - config:
-          clean_workspace: false
-          jobs:
-            config:
-              tasks:
-               - exec:
-                   command: /bin/bash
-                   arguments:
-                    - bin/gocd-helper
-                    - make
-                    - ENV=develop
-                    - COMPONENT=dns
-                    - config
+
+
+
+
 
   master-prometheus:
     group: ops-master
@@ -284,19 +267,10 @@ pipelines:
                     - ENV=master
                     - COMPONENT=prometheus
                     - plan
-      - config:
-          clean_workspace: false
-          jobs:
-            config:
-              tasks:
-               - exec:
-                   command: /bin/bash
-                   arguments:
-                    - bin/gocd-helper
-                    - make
-                    - ENV=master
-                    - COMPONENT=prometheus
-                    - config
+
+
+
+
 
   master-dns:
     group: ops-master
@@ -333,16 +307,7 @@ pipelines:
                     - ENV=master
                     - COMPONENT=dns
                     - plan
-      - config:
-          clean_workspace: false
-          jobs:
-            config:
-              tasks:
-               - exec:
-                   command: /bin/bash
-                   arguments:
-                    - bin/gocd-helper
-                    - make
-                    - ENV=master
-                    - COMPONENT=dns
-                    - config
+
+
+
+
