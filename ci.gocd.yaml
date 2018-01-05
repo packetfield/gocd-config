@@ -38,7 +38,7 @@ pipelines:
                     - make
                     - ENV=develop
                     - COMPONENT=dns
-                    - plan
+                    - apply
 
 
 
@@ -78,7 +78,7 @@ pipelines:
                     - make
                     - ENV=master
                     - COMPONENT=dns
-                    - plan
+                    - apply
 
 
 
@@ -118,7 +118,7 @@ pipelines:
                     - make
                     - ENV=shared
                     - COMPONENT=dns
-                    - plan
+                    - apply
 
 
 
@@ -158,7 +158,7 @@ pipelines:
                     - make
                     - ENV=shared
                     - COMPONENT=drone
-                    - plan
+                    - apply
 
 
       - config:
@@ -212,7 +212,7 @@ pipelines:
                     - make
                     - ENV=shared
                     - COMPONENT=gocd
-                    - plan
+                    - apply
 
 
       - config:
@@ -266,7 +266,7 @@ pipelines:
                     - make
                     - ENV=develop
                     - COMPONENT=prometheus
-                    - plan
+                    - apply
 
 
 
@@ -306,7 +306,7 @@ pipelines:
                     - make
                     - ENV=master
                     - COMPONENT=prometheus
-                    - plan
+                    - apply
 
 
 
